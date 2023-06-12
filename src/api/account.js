@@ -18,7 +18,7 @@ const getTransaction = async (transId) => {
   }
 };
 
-const updateBalance = async (noteInfo) => {
+const updateInfo = async (noteInfo) => {
   try {
     const { data } = await instance.put(`/notes/${noteInfo._id}`, noteInfo);
     return data;
@@ -26,3 +26,5 @@ const updateBalance = async (noteInfo) => {
     console.log(error);
   }
 };
+
+export { getAllTransactions, getTransaction, updateInfo };

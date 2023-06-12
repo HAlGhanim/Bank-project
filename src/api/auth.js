@@ -20,22 +20,30 @@ const register = async (userInfo) => {
     storeToken(data.token);
     return data;
   } catch (error) {
+    if (error.response.data.name === "ValidationError") {
+      alert(
+        "Your password must contain at least 1 uppercase letter, 1 number, and no less than 8 characters"
+      );
+    } else if (error.response.data.name === "MongoServerError") {
+      alert("This user already exists");
+    }
     console.log(error);
+    throw error;
   }
 };
 
-const me = async () => {
-  try {
-    const { data } = await instance.get("/auth/me");
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+// const me = async () => {
+//   try {
+//     const { data } = await instance.get("/auth/me");
+//     return data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 const getAllUsers = async () => {
   try {
-    const { data } = await instance.get("/auth/users");
+    const { data } = await instance.get("/api/auth/v3/users");
     return data;
   } catch (error) {
     console.log(error);
@@ -64,4 +72,4 @@ const checkToken = (token) => {
 const logout = () => {
   localStorage.removeItem("token");
 };
-export { login, register, me, getAllUsers, storeToken, checkToken, logout };
+export { login, register, getAllUsers, storeToken, checkToken, logout };
