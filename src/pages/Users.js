@@ -10,7 +10,6 @@ const User = () => {
     queryKey: ["users"],
     queryFn: getAllUsers,
   });
-//   console.log(users);
   if (!user) {
     return <Navigate to="/login" />;
   }
@@ -31,7 +30,12 @@ const User = () => {
               />
               <div className="text-center">
                 <h3 className="text-lg text-white font-semibold mb-2">
-                  {user.name}
+                  {user.username}
+                </h3>
+              </div>
+              <div className="text-center">
+                <h3 className="text-lg text-white font-semibold mb-2">
+                  {user.account}
                 </h3>
               </div>
             </div>
