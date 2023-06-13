@@ -70,6 +70,7 @@ const checkToken = () => {
   if (token) {
     const decode = jwt_Decode(token);
     const currentTime = Date.now() / 1000;
+    console.log(token);
     if (decode.exp < currentTime) {
       localStorage.removeItem("token");
       return false;
