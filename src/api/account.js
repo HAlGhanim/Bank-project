@@ -27,4 +27,13 @@ const updateInfo = async (noteInfo) => {
   }
 };
 
-export { getAllTransactions, getTransaction, updateInfo };
+const getBalance = async () => {
+  try {
+    const { data } = await instance.get("/api/bank/v3/balance");
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getAllTransactions, getTransaction, updateInfo, getBalance };

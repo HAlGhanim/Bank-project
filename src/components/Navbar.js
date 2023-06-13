@@ -21,39 +21,40 @@ const Navbar = () => {
           </div>
           <div className="block">
             <div className="ml-10 flex items-baseline space-x-4">
-              <NavLink
-                to="/"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Home
-              </NavLink>
-              <NavLink
-                to="/profile"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Profile
-              </NavLink>
-              <NavLink
-                to="/users"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Users
-              </NavLink>
-              <NavLink
-                to="/details"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Account
-              </NavLink>
-
               <>
+                <NavLink
+                  to="/"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Home
+                </NavLink>
                 {user ? (
-                  <button
-                    onClick={handleLogout}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Logout
-                  </button>
+                  <>
+                    <NavLink
+                      to="/profile"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Profile
+                    </NavLink>
+                    <NavLink
+                      to="/users"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Users
+                    </NavLink>
+                    <NavLink
+                      to="/details"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Account
+                    </NavLink>
+                    <button
+                      onClick={handleLogout}
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Logout
+                    </button>
+                  </>
                 ) : (
                   <>
                     <NavLink

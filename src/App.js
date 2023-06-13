@@ -10,6 +10,7 @@ import Users from "./pages/Users";
 import UserContext from "./context/UserContext";
 import { useEffect, useState } from "react";
 import { checkToken } from "./api/auth";
+import Transfer from "./pages/Transfer";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -28,6 +29,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/details" element={<AccountDetails />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/transfer/:username" element={<Transfer />} />
         </Routes>
       </div>
     </UserContext.Provider>

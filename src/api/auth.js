@@ -4,7 +4,8 @@ import instance from "../api";
 const login = async (userInfo) => {
   try {
     const { data } = await instance.post("/api/auth/v3/login", userInfo);
-    storeToken(data.token);
+    storeToken(data.access);
+    console.log(data);
     return data;
   } catch (error) {
     throw error;
@@ -17,7 +18,7 @@ const register = async (userInfo) => {
     const formData = new FormData();
     for (const key in userInfo) formData.append(key, userInfo[key]);
     const { data } = await instance.post("/api/auth/v3/register", formData);
-    storeToken(data.token);
+    storeToken(data.access);
     return data;
   } catch (error) {
     if (error.response.data.name === "ValidationError") {
@@ -50,12 +51,21 @@ const getAllUsers = async () => {
   }
 };
 
+const getProfile = async () => {
+  try {
+    const { data } = await instance.get("/api/auth/v3/profile");
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const storeToken = (token) => {
   localStorage.setItem("token", token);
 };
 
-const checkToken = (token) => {
-  localStorage.getItem("token");
+const checkToken = () => {
+  const token = localStorage.getItem("token");
 
   if (token) {
     const decode = jwt_Decode(token);
@@ -72,4 +82,4 @@ const checkToken = (token) => {
 const logout = () => {
   localStorage.removeItem("token");
 };
-export { login, register, getAllUsers, storeToken, checkToken, logout };
+export { login, register, getAllUsers, getProfile, storeToken, checkToken, logout };
